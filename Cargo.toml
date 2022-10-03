@@ -2,6 +2,7 @@
 name = "LD51_game"
 version = "0.1.0"
 edition = "2021"
+authors = ["Noah Shomette <https://github.com/NoahShomette>"]
 
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
@@ -16,7 +17,8 @@ opt-level = 1
 opt-level = 3
 
 [dependencies]
-bevy = "0.8.1"
+bevy = { version = "0.8.1", default-features = false, features = ["bevy_asset", "bevy_winit", "render", "png", "x11"] }
 bevy_rapier2d = "0.16.2"
 bevy_ecs_tilemap = "0.7.0"
 rand = "0.8.5"
+bevy_kira_audio = { version = "0.12.0", features = ["mp3", "wav", "ogg"]}

@@ -3,7 +3,7 @@
 #[derive(Debug, PartialEq, Eq)]
 pub enum GamePlayState {
     Menu,
-    Win,
+    Pause,
     Lose,
     Playing,
 }
@@ -31,7 +31,7 @@ impl GameStateInfo {
             GamePlayState::Menu => {
                 match play_state {
                     GamePlayState::Menu => {} //nothing
-                    GamePlayState::Win => {}  //nothing shouldnt be able to go here
+                    GamePlayState::Pause => {}  //nothing shouldnt be able to go here
                     GamePlayState::Lose => {} //nothing shouldnt be able to go here
                     GamePlayState::Playing => {
                         self.game_state = GamePlayState::Playing;
@@ -39,13 +39,13 @@ impl GameStateInfo {
                     } //starts the game
                 }
             }
-            GamePlayState::Win => {
+            GamePlayState::Pause => {
                 match play_state {
                     GamePlayState::Menu => {
                         self.game_state = GamePlayState::Menu;
                         event_writer.send(GamePlayState::Menu)
                     } //go to main menu
-                    GamePlayState::Win => {}  //nothing
+                    GamePlayState::Pause => {}  // nothing
                     GamePlayState::Lose => {} //nothing
                     GamePlayState::Playing => {
                         self.game_state = GamePlayState::Playing;
@@ -59,7 +59,7 @@ impl GameStateInfo {
                         self.game_state = GamePlayState::Menu;
                         event_writer.send(GamePlayState::Menu)
                     } //go to main menu
-                    GamePlayState::Win => {}  //nothing
+                    GamePlayState::Pause => {}  //nothing
                     GamePlayState::Lose => {} //nothing
                     GamePlayState::Playing => {
                         self.game_state = GamePlayState::Playing;
@@ -73,10 +73,10 @@ impl GameStateInfo {
                         self.game_state = GamePlayState::Menu;
                         event_writer.send(GamePlayState::Menu)
                     } //end game and go to main menu
-                    GamePlayState::Win => {
-                        self.game_state = GamePlayState::Win;
-                        event_writer.send(GamePlayState::Win)
-                    } //game done and show win screen
+                    GamePlayState::Pause => {
+                        self.game_state = GamePlayState::Pause;
+                        event_writer.send(GamePlayState::Pause)
+                    } //pause game
                     GamePlayState::Lose => {
                         self.game_state = GamePlayState::Lose;
                         event_writer.send(GamePlayState::Lose)
