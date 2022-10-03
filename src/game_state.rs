@@ -25,7 +25,7 @@ impl GameStateInfo {
     pub(crate) fn change_game_play_state(
         &mut self,
         play_state: GamePlayState,
-        mut event_writer: EventWriter<GamePlayState>,
+        mut event_writer: &mut EventWriter<GamePlayState>,
     ) {
         match self.game_state {
             GamePlayState::Menu => {
